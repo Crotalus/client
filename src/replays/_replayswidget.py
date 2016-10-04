@@ -193,7 +193,7 @@ class ReplaysWidget(BaseClass, FormClass):
             #if self.onlineReplays[uid].duration != "00:00:00":  # do not add corrupted/early desync replays
                 bucket = buckets.setdefault(self.onlineReplays[uid].startDate, [])
                 bucket.append(self.onlineReplays[uid])
-            
+
         for bucket in buckets.keys():
             bucket_item = QtGui.QTreeWidgetItem()
             self.onlineTree.addTopLevelItem(bucket_item)
@@ -530,7 +530,7 @@ class ReplaysWidget(BaseClass, FormClass):
             
     def connectToModVault(self):
         """ connect to the replay vault server """
-        
+
         if self.replayVaultSocket.state() != QtNetwork.QAbstractSocket.ConnectedState and self.replayVaultSocket.state() != QtNetwork.QAbstractSocket.ConnectingState:
             self.replayVaultSocket.connectToHost(self.HOST, self.SOCKET)        
 

@@ -64,9 +64,9 @@ class GameItem(QtGui.QListWidgetItem):
     ICONSIZE = 110
     PADDING = 10
 
-    FORMATTER_FAF       = unicode(util.readfile("games/formatters/faf.qthtml"))
-    FORMATTER_MOD       = unicode(util.readfile("games/formatters/mod.qthtml"))
-    FORMATTER_TOOL      = unicode(util.readfile("games/formatters/tool.qthtml"))
+    FORMATTER_FAF  = unicode(util.readfile("games/formatters/faf.qthtml"))
+    FORMATTER_MOD  = unicode(util.readfile("games/formatters/mod.qthtml"))
+    FORMATTER_TOOL = unicode(util.readfile("games/formatters/tool.qthtml"))
     
     def __init__(self, uid, *args, **kwargs):
         QtGui.QListWidgetItem.__init__(self, *args, **kwargs)
@@ -127,11 +127,11 @@ class GameItem(QtGui.QListWidgetItem):
             return
 
         url = self.url()
-                      
+        istr = self.client.getColor("url") + '" href="' + url.toString() + '">' + self.title + '</a> (on "' + self.mapdisplayname + '")'
         if self.mod == "faf":
-            self.client.forwardLocalBroadcast(self.host, 'is playing live in <a style="color:' + self.client.getColor("url") + '" href="' + url.toString() + '">' + self.title + '</a> (on "' + self.mapdisplayname + '")')
+            self.client.forwardLocalBroadcast(self.host, 'is playing live in <a style="color:' + istr)
         else:
-            self.client.forwardLocalBroadcast(self.host, 'is playing ' + self.mod + ' in <a style="color:' + self.client.getColor("url") + '" href="' + url.toString() + '">' + self.title + '</a> (on "' + self.mapdisplayname + '")')
+            self.client.forwardLocalBroadcast(self.host, 'is playing ' + self.mod + ' in <a style="color:' + istr)
         
     
     @QtCore.pyqtSlot()
